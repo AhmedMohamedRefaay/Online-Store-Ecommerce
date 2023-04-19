@@ -1,0 +1,66 @@
+﻿@model IEnumerable<WebApplication1.Models.ProductType>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create" asp-controller="ProductTypes" class="btn btn-info"><i class="fa-solid fa-plus"></i>Add New Product Type</a>
+</p>
+<table class="table table-striped border">
+    <thead  class="table table-info">
+        <tr>
+            <th >
+                @Html.DisplayNameFor(model => model.productType)
+            </th>
+
+            <th></th>
+        </tr>
+         
+
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.productType)
+                </td>
+                <td>
+                    <partial name="_ButtonPartial" model="@item.Id" />
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@section Scripts
+{
+    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+
+    <script type="text/javascript">
+
+        $(function () {
+            var v = '@TempData["Save"]'
+            if (v != '') {
+                alertify.success(v);
+
+            }
+
+             var d = '@TempData["Del"]'
+            if (d != '') {
+                alertify.error(d);
+            }
+
+             var e = '@TempData["edit"]'
+            if (e != '') {
+                alertify.success(e);
+            }
+        });
+
+
+         
+    </script>
+
+} 
